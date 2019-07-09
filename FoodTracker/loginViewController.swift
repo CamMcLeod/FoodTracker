@@ -16,6 +16,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var userState: UISegmentedControl!
+    @IBOutlet weak var foodImageView: UIImageView!
+    @IBOutlet var imageTapRecognizer: UITapGestureRecognizer!
     
     var cloudTrackerAPI = CloudTrackerAPI()
     var pleaseWaitAlert: UIAlertController?
@@ -27,6 +29,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         usernameTextField.delegate = self
         passwordTextField.delegate = self
+        imageTapRecognizer.addTarget(self, action: #selector(handleTap(gestureRecognizer:)))
         
         let hasSavedCredentials = UserDefaults.standard.bool(forKey: "user_has_credentials")
         
@@ -118,6 +121,44 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         newUser = sender.selectedSegmentIndex == 1 ? true : false
     }
     
+    //MARK: Animations
+    
+    @objc func handleTap(gestureRecognizer: UIGestureRecognizer) {
+        
+        
+//        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+//            self.foodImageView.alpha = 0.8
+//            self.foodImageView.transform = self.foodImageView.transform.rotated(by: .pi/32)
+//        }, completion: { (true) in
+//            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+//                self.foodImageView.transform = self.foodImageView.transform.rotated(by: -.pi/16)
+//            }, completion: { (true) in
+//                UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+//                    self.foodImageView.alpha = 1
+//                    self.foodImageView.transform = self.foodImageView.transform.rotated(by: .pi/32)
+//                })
+//            })
+//        })
+        
+        UIView.animateKeyframes(withDuration: 0.6, delay: 0, options: [], animations: {
+            
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1, animations: {
+                self.foodImageView.alpha = 0.8
+                self.foodImageView.transform = self.foodImageView.transform.rotated(by: .pi/32)
+            })
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.33, relativeDuration: 0.33, animations: {
+                self.foodImageView.transform = self.foodImageView.transform.rotated(by: -.pi/16)
+            })
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.66, relativeDuration: 0.33, animations: {
+                self.foodImageView.alpha = 1
+                self.foodImageView.transform = self.foodImageView.transform.rotated(by: .pi/32)
+            })
+            
+        })
+        
+    }
     
     //MARK: Private Methods
     private func updateLoginButtonState() {

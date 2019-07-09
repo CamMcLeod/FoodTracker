@@ -27,8 +27,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="Yaz-4h-jne">
+                                    <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="Yaz-4h-jne">
                                         <rect key="frame" x="0.0" y="38" width="335" height="320"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="kFc-IE-kfU" appends="YES" id="8dW-Tk-9cO"/>
+                                        </connections>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Sign in:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goE-50-fU5">
                                         <rect key="frame" x="0.0" y="366" width="335" height="20.5"/>
@@ -79,6 +83,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="GXt-sg-eGS"/>
                     <connections>
+                        <outlet property="foodImageView" destination="Yaz-4h-jne" id="Jm6-HC-yOI"/>
+                        <outlet property="imageTapRecognizer" destination="kFc-IE-kfU" id="67O-A1-7x6"/>
                         <outlet property="loginButton" destination="SBp-3o-QTw" id="l4m-ZP-Hol"/>
                         <outlet property="passwordTextField" destination="4PF-m6-RBK" id="RrE-Vy-2yN"/>
                         <outlet property="userState" destination="NKK-SH-tJn" id="BlR-un-CIJ"/>
@@ -87,6 +93,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aQq-vP-KE1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="kFc-IE-kfU"/>
             </objects>
             <point key="canvasLocation" x="-770" y="126"/>
         </scene>
